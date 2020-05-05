@@ -11,7 +11,7 @@ public interface IDonanteDao {
 
 	public void delete(int CDonante);
 
-	public List<Donante> finByNameInfectiousAgent(Donante ia);
+	public List<Donante> finByNameDonante(Donante ia);
 
-	public void editar(Donante ia);
+	public void modificar(Donante ia);
 }
