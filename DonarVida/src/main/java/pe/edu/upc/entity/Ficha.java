@@ -2,6 +2,7 @@ package pe.edu.upc.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,12 +19,12 @@ import javax.persistence.Table;
 public class Ficha implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int CFicha;
 	
-	@ManyToOne
-	@JoinColumn(name = "NUser", nullable = false)
-	private User NUser;
+	@OneToOne(cascade = CascadeType.ALL)
+	@MapsId
+	@JoinColumn(name = "CUser", nullable = false)
+	private User user;
 	
 	private int BETS;
 	private int QHemoglobina;
@@ -29,7 +32,7 @@ public class Ficha implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "CLicLab", nullable = false)
-	private Licenciado_Laboratorio CLicLab;
+	private Licenciado_Laboratorio licenciado;
 	
 	@Column(name = "TTipoSangre", nullable = false, length = 5)
 	private String TTipoSangre;
@@ -39,15 +42,15 @@ public class Ficha implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ficha(int cFicha, User nUser, int bETS, int qHemoglobina, int bApto, Licenciado_Laboratorio cLicLab,
+	private Ficha(int cFicha, User user, int bETS, int qHemoglobina, int bApto, Licenciado_Laboratorio licenciado,
 			String tTipoSangre) {
 		super();
 		CFicha = cFicha;
-		NUser = nUser;
+		this.user = user;
 		BETS = bETS;
 		QHemoglobina = qHemoglobina;
 		BApto = bApto;
-		CLicLab = cLicLab;
+		this.licenciado = licenciado;
 		TTipoSangre = tTipoSangre;
 	}
 
@@ -59,12 +62,12 @@ public class Ficha implements Serializable{
 		CFicha = cFicha;
 	}
 
-	public User getNUser() {
-		return NUser;
+	public User getUser() {
+		return user;
 	}
 
-	public void setNUser(User nUser) {
-		NUser = nUser;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public int getBETS() {
@@ -91,12 +94,12 @@ public class Ficha implements Serializable{
 		BApto = bApto;
 	}
 
-	public Licenciado_Laboratorio getCLicLab() {
-		return CLicLab;
+	public Licenciado_Laboratorio getLicenciado() {
+		return licenciado;
 	}
 
-	public void setCLicLab(Licenciado_Laboratorio cLicLab) {
-		CLicLab = cLicLab;
+	public void setLicenciado(Licenciado_Laboratorio licenciado) {
+		this.licenciado = licenciado;
 	}
 
 	public String getTTipoSangre() {
@@ -106,5 +109,7 @@ public class Ficha implements Serializable{
 	public void setTTipoSangre(String tTipoSangre) {
 		TTipoSangre = tTipoSangre;
 	}
+
+
 	
 }

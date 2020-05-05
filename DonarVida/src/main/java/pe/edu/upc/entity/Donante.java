@@ -3,18 +3,19 @@ package pe.edu.upc.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Donantes")
 public class Donante implements Serializable{
 
-	
 	
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -32,6 +33,9 @@ public class Donante implements Serializable{
 	
 	@Column(name = "TDireccion", nullable = false, length = 20)
 	private String TDireccion;
+	
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "donante")
+	private User user;
 	
 	private Date FNacimiento;
 	private int CDNI;

@@ -22,25 +22,25 @@ public class Reservar_Cita implements Serializable{
 	private Date DReservaCita;
 	
 	@ManyToOne
-	@JoinColumn(name = "NUser", nullable = false)
-	private User NUser;
+	@JoinColumn(name = "CUser", nullable = false)
+	private User user;
 	
 	@ManyToOne
 	@JoinColumn(name = "CHospital", nullable = false)
-	private Hospital CHospital;
+	private Hospital hospital;
 
 	public Reservar_Cita() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reservar_Cita(int cCita, Date dCita, Date dReservaCita, User nUser, Hospital cHospital) {
+	public Reservar_Cita(int cCita, Date dCita, Date dReservaCita, User user, Hospital hospital) {
 		super();
 		CCita = cCita;
 		DCita = dCita;
 		DReservaCita = dReservaCita;
-		NUser = nUser;
-		CHospital = cHospital;
+		this.user = user;
+		this.hospital = hospital;
 	}
 
 	public int getCCita() {
@@ -67,21 +67,22 @@ public class Reservar_Cita implements Serializable{
 		DReservaCita = dReservaCita;
 	}
 
-	public User getNUser() {
-		return NUser;
+	public User getUser() {
+		return user;
 	}
 
-	public void setNUser(User nUser) {
-		NUser = nUser;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public Hospital getCHospital() {
-		return CHospital;
+	public Hospital getHospital() {
+		return hospital;
 	}
 
-	public void setCHospital(Hospital cHospital) {
-		CHospital = cHospital;
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
 	}
-	
+
+
 	
 }

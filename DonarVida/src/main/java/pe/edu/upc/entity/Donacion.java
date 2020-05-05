@@ -16,13 +16,19 @@ import javax.persistence.Table;
 @Table(name="Donaciones")
 public class Donacion implements Serializable{
 
-	@ManyToOne
-	@JoinColumn(name = "CCita", nullable = false)
-	private Reservar_Cita CCita;
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	
 	@ManyToOne
+	@JoinColumn(name = "CCita", nullable = false)
+	private Reservar_Cita cita;
+
+	@ManyToOne
 	@JoinColumn(name = "CUnidad", nullable = false)
-	private UnidadSangre CUnidad;
+	private UnidadSangre unidad;
 	
 	private Date DDonacion;
 
@@ -31,27 +37,27 @@ public class Donacion implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Donacion(Reservar_Cita cCita, UnidadSangre cUnidad, Date dDonacion) {
+	private Donacion(Reservar_Cita cita, UnidadSangre unidad, Date dDonacion) {
 		super();
-		CCita = cCita;
-		CUnidad = cUnidad;
+		this.cita = cita;
+		this.unidad = unidad;
 		DDonacion = dDonacion;
 	}
 
-	public Reservar_Cita getCCita() {
-		return CCita;
+	public Reservar_Cita getCita() {
+		return cita;
 	}
 
-	public void setCCita(Reservar_Cita cCita) {
-		CCita = cCita;
+	public void setCita(Reservar_Cita cita) {
+		this.cita = cita;
 	}
 
-	public UnidadSangre getCUnidad() {
-		return CUnidad;
+	public UnidadSangre getUnidad() {
+		return unidad;
 	}
 
-	public void setCUnidad(UnidadSangre cUnidad) {
-		CUnidad = cUnidad;
+	public void setUnidad(UnidadSangre unidad) {
+		this.unidad = unidad;
 	}
 
 	public Date getDDonacion() {
@@ -61,5 +67,6 @@ public class Donacion implements Serializable{
 	public void setDDonacion(Date dDonacion) {
 		DDonacion = dDonacion;
 	}
-	
+
+
 }
