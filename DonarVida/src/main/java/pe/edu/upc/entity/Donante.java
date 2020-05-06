@@ -36,7 +36,8 @@ public class Donante implements Serializable{
 	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "donante")
 	private User user;
-	
+
+
 	private Date FNacimiento;
 	private int CDNI;
 	
@@ -114,6 +115,14 @@ public class Donante implements Serializable{
 
 	public void setCDNI(int cDNI) {
 		CDNI = cDNI;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }
